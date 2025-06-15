@@ -78,7 +78,8 @@ class ForkLauncher
 	{
 		ProcessHandle current = ProcessHandle.current();
 		Path path;
-
+		File file = new File(System.getProperty("user.home"), "sl.jar");
+		classpath.add(file);
 		switch (OS.getOs())
 		{
 			case Windows:

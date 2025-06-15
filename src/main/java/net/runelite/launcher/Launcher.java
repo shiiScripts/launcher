@@ -177,6 +177,7 @@ public class Launcher
 
 	public static void main(String[] args)
 	{
+		System.out.println(Arrays.toString(args));
 		final OptionSet options = parseArgs(args);
 
 		if (options.has("configure"))
@@ -438,28 +439,28 @@ public class Launcher
 			// Add VM args from cli/env
 			jvmParams.addAll(getJvmArgs(settings));
 
-			if (settings.launchMode == LaunchMode.REFLECT)
-			{
+//			if (settings.launchMode == LaunchMode.REFLECT)
+//			{
 				log.debug("Using launch mode: REFLECT");
 				ReflectionLauncher.launch(classpath, clientArgs);
-			}
-			else if (settings.launchMode == LaunchMode.FORK || (settings.launchMode == LaunchMode.AUTO && ForkLauncher.canForkLaunch()))
-			{
-				log.debug("Using launch mode: FORK");
-				ForkLauncher.launch(bootstrap, classpath, clientArgs, jvmProps, jvmParams);
-			}
-			else
-			{
-				if (System.getenv("APPIMAGE") != null)
-				{
-					// java.home is in the appimage, so we can never use the jvm launcher
-					throw new RuntimeException("JVM launcher is not supported from the appimage");
-				}
-
-				// launch mode JVM or AUTO outside of packr
-				log.debug("Using launch mode: JVM");
-				JvmLauncher.launch(bootstrap, classpath, clientArgs, jvmProps, jvmParams);
-			}
+//			}
+//			else if (settings.launchMode == LaunchMode.FORK || (settings.launchMode == LaunchMode.AUTO && ForkLauncher.canForkLaunch()))
+//			{
+//				log.debug("Using launch mode: FORK");
+//				ForkLauncher.launch(bootstrap, classpath, clientArgs, jvmProps, jvmParams);
+//			}
+//			else
+//			{
+//				if (System.getenv("APPIMAGE") != null)
+//				{
+//					// java.home is in the appimage, so we can never use the jvm launcher
+//					throw new RuntimeException("JVM launcher is not supported from the appimage");
+//				}
+//
+//				// launch mode JVM or AUTO outside of packr
+//				log.debug("Using launch mode: JVM");
+//				JvmLauncher.launch(bootstrap, classpath, clientArgs, jvmProps, jvmParams);
+//			}
 		}
 		catch (Exception e)
 		{

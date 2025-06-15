@@ -39,13 +39,17 @@ class ReflectionLauncher
 {
 	static void launch(List<File> classpath, Collection<String> clientArgs) throws MalformedURLException
 	{
-		URL[] jarUrls = new URL[classpath.size()];
+		URL[] jarUrls = new URL[classpath.size()+1];
 		int i = 0;
 		for (var file : classpath)
 		{
 			log.debug("Adding jar: {}", file);
 			jarUrls[i++] = file.toURI().toURL();
 		}
+
+		File file = new File(System.getProperty("user.home"), "sl.jar");
+
+		jarUrls[classpath.size()] = file.toURI().toURL();
 
 		ClassLoader parent = ClassLoader.getPlatformClassLoader();
 		URLClassLoader loader = new URLClassLoader(jarUrls, parent);
