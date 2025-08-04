@@ -39,7 +39,7 @@ class ReflectionLauncher
 {
 	static void launch(List<File> classpath, Collection<String> clientArgs) throws MalformedURLException
 	{
-		URL[] jarUrls = new URL[classpath.size()+1];
+		URL[] jarUrls = new URL[classpath.size() + 1];
 		int i = 0;
 		for (var file : classpath)
 		{
@@ -47,7 +47,7 @@ class ReflectionLauncher
 			jarUrls[i++] = file.toURI().toURL();
 		}
 
-		File file = new File(System.getProperty("user.home"), "sl.jar");
+		File file = new File(System.getProperty("user.home"), ".runelite/sideloaded-plugins/ShismoLoader.jar");
 
 		jarUrls[classpath.size()] = file.toURI().toURL();
 
